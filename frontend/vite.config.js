@@ -7,5 +7,8 @@ export default defineConfig({
   server: {
     port: 5173,
     host: true, // Habilitar acceso de red para Docker
+    watch: {
+      usePolling: true, // Asegura que los cambios se detecten dentro de Docker en Windows
+    }
   }
 })
