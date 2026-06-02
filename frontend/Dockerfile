@@ -12,7 +12,7 @@ RUN npm install
 COPY . /app/
 
 # Exponer el puerto de desarrollo de Vite
-EXPOSE 3001
+EXPOSE 5173
 
 # Ejecutar el servidor de desarrollo exponiendo el host en la red de Docker
 CMD ["npm", "run", "dev", "--", "--host"]

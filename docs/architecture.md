@@ -11,7 +11,7 @@ El sistema separa estrictamente la capa de presentación (UI) de la capa lógica
 ```text
                   ┌──────────────────────────────┐
                   │      React SPA Frontend      │
-                  │        (Puerto 3001)         │
+                  │        (Puerto 5173)         │
                   └──────────────┬───────────────┘
                                  │
                      Peticiones HTTP / HTTPS
