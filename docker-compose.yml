@@ -1,0 +1,90 @@
+version: '3.8'
+
+services:
+  # Base de Datos Relacional de Nivel Empresarial
+  db:
+    image: postgres:15-alpine
+    container_name: uho_postgres_db
+    restart: always
+    environment:
+      POSTGRES_DB: uho_db
+      POSTGRES_USER: uho_user
+      POSTGRES_PASSWORD: uho_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      # Integración de backups dentro de los volúmenes del contenedor
+      - ./docker/db:/docker-entrypoint-initdb.d
+    networks:
+      - uho_network
+
+  # Servidor S3 Local para almacenamiento de archivos universitarios
+  minio:
+    image: minio/minio:latest
+    container_name: uho_minio_s3
+    restart: always
+    ports:
+      - "9000:9000" # Puerto API de Almacenamiento
+      - "9001:9001" # Puerto Consola Web de Administración
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+    volumes:
+      - minio_data:/data
+    command: server /data --console-address ":9001"
+    networks:
+      - uho_network
+
+  # API Backend en Django REST Framework
+  backend:
+    build: ./backend
+    container_name: uho_backend_api
+    restart: always
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./backend:/app
+    ports:
+      - "8000:8000"
+    environment:
+      - SECRET_KEY=django-insecure-uho-system-development-key-2026-v1
+      - DEBUG=True
+      - ALLOWED_HOSTS=localhost,127.0.0.1,backend,frontend
+      - DATABASE_URL=postgres://uho_user:uho_password@db:5432/uho_db
+      - USE_MINIO=True
+      - MINIO_ACCESS_KEY=minioadmin
+      - MINIO_SECRET_KEY=minioadmin
+      - MINIO_BUCKET_NAME=uho-media
+      - MINIO_ENDPOINT=http://minio:9000
+    depends_on:
+      - db
+      - minio
+    networks:
+      - uho_network
+
+  # Aplicación Web Frontend en React.js (Vite + Tailwind)
+  frontend:
+    build: ./frontend
+    container_name: uho_frontend_web
+    restart: always
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules # Evitar sobreescribir dependencias con enlace local
+    ports:
+      - "3000:3000"
+    environment:
+      - VITE_API_URL=http://localhost:8000/api/
+    depends_on:
+      - backend
+    networks:
+      - uho_network
+
+volumes:
+  postgres_data:
+    driver: local
+  minio_data:
+    driver: local
+
+networks:
+  uho_network:
+    driver: bridge

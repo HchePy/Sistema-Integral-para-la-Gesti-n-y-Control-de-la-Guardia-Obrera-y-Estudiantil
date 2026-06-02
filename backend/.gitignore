@@ -1,0 +1,28 @@
+# Entornos virtuales
+.venv/
+venv/
+ENV/
+env/
+
+# Temporales de Python y cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Configuración local y secretos
+.env
+db.sqlite3
+db.sqlite3-journal
+
+# Archivos de media y estáticos generados
+media/
+staticfiles/
+
+# IDEs
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
