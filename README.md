@@ -12,7 +12,7 @@ El sistema implementa un enfoque de **arquitectura de tres capas deslocalizada**
 ### 📊 Diagrama de Arquitectura
 ```mermaid
 graph TD
-    subgraph Cliente [Capa de Presentación - Puerto 3000]
+    subgraph Cliente [Capa de Presentación - Puerto 3001]
         React[React.js SPA]
         Tailwind[Tailwind CSS & Lucide Icons]
     end
@@ -110,7 +110,7 @@ Levanta todos los servicios aislados en contenedores con un único comando:
    docker-compose up --build
    ```
 3. **Servicios Disponibles:**
-   * Frontend: `http://localhost:3000`
+   * Frontend: `http://localhost:3001`
    * Backend API: `http://localhost:8000/api/`
    * Documentación Swagger: `http://localhost:8000/api/docs/`
    * Consola MinIO S3: `http://localhost:9001` (Credenciales por defecto en `.env`)
@@ -148,7 +148,7 @@ Levanta todos los servicios aislados en contenedores con un único comando:
    npm install
    npm run dev
    ```
-   *Frontend disponible en: `http://localhost:3000`*
+   *Frontend disponible en: `http://localhost:3001`*
 
 ---
 

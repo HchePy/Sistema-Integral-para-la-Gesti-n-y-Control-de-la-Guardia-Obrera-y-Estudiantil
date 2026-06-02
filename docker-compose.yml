@@ -71,7 +71,7 @@ services:
       - ./frontend:/app
       - /app/node_modules # Evitar sobreescribir dependencias con enlace local
     ports:
-      - "3000:3000"
+      - "3001:3001"
     environment:
       - VITE_API_URL=http://localhost:8000/api/
     depends_on:
