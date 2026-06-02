@@ -1375,13 +1375,15 @@ export default function Dashboard() {
       {/* Cabecera / Header superior */}
       <header className="glass sticky top-0 z-40 border-b border-slate-800/80 px-6 py-4 flex items-center justify-between bg-slate-900/60 backdrop-blur-md">
         <div className="flex items-center gap-3">
-          <div className="p-2.5 rounded-xl bg-gradient-to-br from-emerald-600 to-teal-800 text-white shadow-lg">
-            <Sparkles className="h-6 w-6 text-amber-400" />
-          </div>
+          <img 
+            src="/logo-uho-icon-white.png" 
+            alt="Logo UHO" 
+            className="h-10 w-10 object-contain" 
+          />
           <div>
             <h1 className="text-xl font-bold tracking-tight text-white flex items-center gap-2">
               SIGCGOE
-              <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+              <span className="text-[10px] px-2 py-0.5 rounded-full bg-uho-light/10 text-uho-light border border-uho-light/20">
                 UHO v1.0
               </span>
             </h1>

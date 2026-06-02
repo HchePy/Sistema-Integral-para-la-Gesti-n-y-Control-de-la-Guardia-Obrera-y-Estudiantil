@@ -8,11 +8,11 @@ export default {
     extend: {
       colors: {
         uho: {
-          light: '#388e3c',
-          DEFAULT: '#1b5e20', // Verde UHO institucional
-          dark: '#0d3c12',
-          accent: '#ffb300',  // Oro/Amarillo UHO institucional
-          accentHover: '#ffa000',
+          light: '#4A90D9',   // Celeste/Azul claro universitario
+          DEFAULT: '#1A3A6E', // Azul Universitario Predominante (según E.R.S)
+          dark: '#0F2447',    // Azul marino oscuro
+          accent: '#F39C12',  // Oro/Ámbar de contraste
+          accentHover: '#D68910',
         }
       },
       fontFamily: {

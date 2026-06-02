@@ -38,13 +38,17 @@ export default function Login() {
       <div className="w-full max-w-lg relative z-10">
         {/* Branding Title */}
         <div className="text-center mb-8">
-          <div className="inline-flex p-3 rounded-2xl bg-gradient-to-br from-uho to-emerald-700 text-white shadow-xl shadow-uho/10 mb-4 animate-bounce">
-            <GraduationCap className="h-10 w-10 text-uho-accent" />
+          <div className="mb-4 flex justify-center">
+            <img 
+              src="/logo-uho-icon.png" 
+              alt="Logo Universidad de Holguín" 
+              className="h-20 w-20 object-contain bg-white p-2.5 rounded-2xl shadow-xl border border-white/10" 
+            />
           </div>
-          <h1 className="text-3xl font-extrabold tracking-tight bg-gradient-to-r from-emerald-400 via-uho-accent to-yellow-400 bg-clip-text text-transparent">
+          <h1 className="text-3xl font-extrabold tracking-tight bg-gradient-to-r from-uho-light via-uho-accent to-amber-500 bg-clip-text text-transparent">
             SIGCGOE
           </h1>
-          <p className="text-slate-400 text-sm mt-2 max-w-md mx-auto">
+          <p className="text-slate-400 text-xs mt-2 max-w-md mx-auto font-medium">
             Sistema Integral para la Gestión y Control de la Guardia Obrera y Estudiantil
           </p>
         </div>
@@ -103,7 +107,7 @@ export default function Login() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3.5 px-4 bg-gradient-to-r from-uho to-emerald-700 hover:from-emerald-700 hover:to-uho text-white font-semibold rounded-xl transition-all duration-300 shadow-lg shadow-uho/20 flex items-center justify-center gap-2"
+              className="w-full py-3.5 px-4 bg-gradient-to-r from-uho to-uho-light hover:from-uho-light hover:to-uho text-white font-semibold rounded-xl transition-all duration-300 shadow-lg shadow-uho/20 flex items-center justify-center gap-2"
             >
               {loading ? (
                 <div className="h-5 w-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
