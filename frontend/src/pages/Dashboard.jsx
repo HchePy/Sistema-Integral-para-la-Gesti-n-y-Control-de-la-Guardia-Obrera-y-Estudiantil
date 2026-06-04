@@ -3,7 +3,8 @@ import { useAuth } from '../context/AuthContext';
 import { 
   Users, UserCheck, LogOut, Shield, Database, Sparkles, Lock, Unlock, 
   CheckCircle2, AlertTriangle, Calendar, FileText, Bell, ShieldAlert, 
-  MapPin, Plus, Trash2, Search, Edit, Save, Download, RefreshCw, X, Check, Award
+  MapPin, Plus, Trash2, Search, Edit, Save, Download, RefreshCw, X, Check, Award,
+  Menu
 } from 'lucide-react';
 
 export default function Dashboard() {
@@ -11,6 +12,9 @@ export default function Dashboard() {
   
   // Tab activo actual
   const [activeTab, setActiveTab] = useState('dashboard');
+
+  // Estado para menú móvil
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
   // Sistema de Toasts
   const [toast, setToast] = useState({ show: false, message: '', type: 'success' });
@@ -678,8 +682,8 @@ export default function Dashboard() {
           </div>
         </div>
 
-        <div className="bg-slate-900/50 backdrop-blur-md border border-slate-800/80 rounded-2xl overflow-hidden">
-          <table className="w-full text-xs text-left">
+        <div className="bg-slate-900/50 backdrop-blur-md border border-slate-800/80 rounded-2xl overflow-x-auto">
+          <table className="w-full text-xs text-left min-w-[800px] md:min-w-0">
             <thead className="bg-slate-950 text-slate-300 font-bold border-b border-slate-800">
               <tr>
                 <th className="p-4 w-10">
@@ -863,8 +867,8 @@ export default function Dashboard() {
           </button>
         </div>
 
-        <div className="bg-slate-900/50 backdrop-blur-md border border-slate-800/80 rounded-2xl overflow-hidden">
-          <table className="w-full text-xs text-left">
+        <div className="bg-slate-900/50 backdrop-blur-md border border-slate-800/80 rounded-2xl overflow-x-auto">
+          <table className="w-full text-xs text-left min-w-[700px] md:min-w-0">
             <thead className="bg-slate-950 text-slate-300 font-bold border-b border-slate-800">
               <tr>
                 <th className="p-4">Nombre y Apellidos</th>
@@ -1175,11 +1179,11 @@ export default function Dashboard() {
         </div>
 
         {/* Listado de Áreas */}
-        <div className="bg-slate-900/50 backdrop-blur-md border border-slate-800/80 rounded-2xl overflow-hidden">
-          <div className="p-4 bg-slate-950/40 border-b border-slate-800 flex justify-between items-center">
+        <div className="bg-slate-900/50 backdrop-blur-md border border-slate-800/80 rounded-2xl overflow-x-auto">
+          <div className="p-4 bg-slate-950/40 border-b border-slate-800 flex justify-between items-center min-w-[700px]">
             <h3 className="text-xs font-bold text-slate-200">Áreas Universitarias Registradas</h3>
           </div>
-          <table className="w-full text-xs text-left">
+          <table className="w-full text-xs text-left min-w-[700px] md:min-w-0">
             <thead className="bg-slate-950 text-slate-300 font-bold border-b border-slate-800">
               <tr>
                 <th className="p-4">Código</th>
@@ -1305,8 +1309,8 @@ export default function Dashboard() {
                 </div>
               </div>
 
-              <div className="tbl-wrap">
-                <table className="w-full text-left">
+              <div className="tbl-wrap overflow-x-auto">
+                <table className="w-full text-left min-w-[700px] md:min-w-0">
                   <thead className="bg-slate-950 text-slate-400 font-bold border-b border-slate-800">
                     <tr>
                       <th className="p-3">Fecha</th>
@@ -1372,22 +1376,83 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col">
+      {/* Mobile Drawer (Sidebar on mobile) */}
+      {isMobileMenuOpen && (
+        <div className="fixed inset-0 z-50 md:hidden flex">
+          {/* Backdrop overlay */}
+          <div 
+            className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm"
+            onClick={() => setIsMobileMenuOpen(false)}
+          ></div>
+          
+          {/* Drawer content */}
+          <aside className="relative flex flex-col w-64 max-w-xs bg-slate-900 border-r border-slate-800 p-4 space-y-6 h-full z-50 animate-slideRight">
+            <div className="flex items-center justify-between border-b border-slate-800/80 pb-4">
+              <div className="flex items-center gap-2">
+                <img src="/logo-uho-icon-white.png" alt="Logo UHO" className="h-8 w-8 object-contain" />
+                <span className="font-bold text-white text-sm">Menú de Navegación</span>
+              </div>
+              <button 
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="p-1 rounded-lg hover:bg-slate-800 text-slate-400 hover:text-slate-200"
+                title="Cerrar menú"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+            
+            <div className="space-y-1 overflow-y-auto flex-1">
+              <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest pl-3">
+                Módulos de Guardia
+              </span>
+              <nav className="space-y-1 pt-2">
+                {menuItems.map(item => {
+                  const Icon = item.icon;
+                  return (
+                    <button
+                      key={item.id}
+                      onClick={() => {
+                        setActiveTab(item.id);
+                        setIsMobileMenuOpen(false);
+                      }}
+                      className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold transition-all ${activeTab === item.id ? 'bg-emerald-600/15 text-emerald-400 border border-emerald-500/25' : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900/40'}`}
+                    >
+                      <Icon className="h-4.5 w-4.5" />
+                      <span>{item.label}</span>
+                    </button>
+                  );
+                })}
+              </nav>
+            </div>
+          </aside>
+        </div>
+      )}
+
       {/* Cabecera / Header superior */}
-      <header className="glass sticky top-0 z-40 border-b border-slate-800/80 px-6 py-4 flex items-center justify-between bg-slate-900/60 backdrop-blur-md">
-        <div className="flex items-center gap-3">
+      <header className="glass sticky top-0 z-40 border-b border-slate-800/80 px-4 md:px-6 py-4 flex items-center justify-between bg-slate-900/60 backdrop-blur-md">
+        <div className="flex items-center gap-2 sm:gap-3">
+          {/* Hamburger button for mobile */}
+          <button 
+            onClick={() => setIsMobileMenuOpen(true)}
+            className="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:text-emerald-400 transition-colors md:hidden"
+            title="Abrir menú"
+          >
+            <Menu className="h-4.5 w-4.5" />
+          </button>
+
           <img 
             src="/logo-uho-icon-white.png" 
             alt="Logo UHO" 
-            className="h-10 w-10 object-contain" 
+            className="h-9 w-9 sm:h-10 sm:w-10 object-contain" 
           />
           <div>
-            <h1 className="text-xl font-bold tracking-tight text-white flex items-center gap-2">
+            <h1 className="text-lg sm:text-xl font-bold tracking-tight text-white flex items-center gap-1.5 sm:gap-2">
               SIGCGOE
-              <span className="text-[10px] px-2 py-0.5 rounded-full bg-uho-light/10 text-uho-light border border-uho-light/20">
+              <span className="text-[10px] px-2 py-0.5 rounded-full bg-uho-light/10 text-uho-light border border-uho-light/20 hidden sm:inline-flex">
                 UHO v1.0
               </span>
             </h1>
-            <p className="text-[10px] text-slate-400 font-medium">Universidad de Holguín "Oscar Lucero Moya"</p>
+            <p className="text-[10px] text-slate-400 font-medium hidden sm:block">Universidad de Holguín "Oscar Lucero Moya"</p>
           </div>
         </div>
 
@@ -1395,7 +1460,7 @@ export default function Dashboard() {
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2 bg-slate-900/80 px-3 py-1.5 rounded-xl border border-slate-800">
             <Shield className="h-4 w-4 text-emerald-400" />
-            <span className="text-[10px] font-bold text-slate-400 uppercase">Simular Rol:</span>
+            <span className="text-[10px] font-bold text-slate-400 uppercase hidden sm:inline">Simular Rol:</span>
             <select 
               value={user?.role} 
               onChange={(e) => {
