@@ -56,6 +56,7 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem('uho_user', JSON.stringify(userData));
       setUser(userData);
       setIsMockMode(false);
+      setLoading(false);
       return { success: true };
     } catch (error) {
       console.warn("Backend no disponible o credenciales incorrectas. Activando simulación local...");
