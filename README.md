@@ -169,10 +169,10 @@ A continuación se detalla la lista de verificación (checklist) oficial de los 
   - [x] Unificación de repositorios Git en una estructura modular y organizada.
   - [x] Modelado inicial del usuario personalizado y control de acceso (RBAC).
   - [x] Creación de base de datos de desarrollo local y migraciones iniciales (`v1.0`).
-- [ ] **Hito 2: Módulo de Administración y Perfiles (Fase Inicial)**
-  - [ ] **[MOD-01]** CRUD de Nomencladores (Áreas, Departamentos, Sedes, Cargos, Contratos).
-  - [ ] **[MOD-01]** Sincronización simulada de datos primarios desde ASSET y SIGENU.
-  - [ ] **[MOD-02]** Vista de Perfil y edición de datos de contacto de trabajadores/estudiantes.
+- [x] **Hito 2: Módulo de Administración y Perfiles (Fase Inicial)**
+  - [x] **[MOD-01]** CRUD de Nomencladores (Áreas, Departamentos, Sedes, Cargos, Contratos).
+  - [x] **[MOD-01]** Sincronización simulada de datos primarios desde ASSET y SIGENU.
+  - [x] **[MOD-02]** Vista de Perfil y edición de datos de contacto de trabajadores/estudiantes.
 - [ ] **Hito 3: Módulos de Compromiso de Guardia (Fase Intermedia)**
   - [ ] **[MOD-03]** Formulario y persistencia de Compromiso de Guardia para Trabajadores.
   - [ ] **[MOD-04]** Flujo de Compromiso y parámetros por defecto para Estudiantes.
