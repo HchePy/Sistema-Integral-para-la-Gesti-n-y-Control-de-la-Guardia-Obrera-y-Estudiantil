@@ -157,7 +157,7 @@ SIMPLE_JWT = {
 SPECTACULAR_SETTINGS = {
     'TITLE': 'Sistema de Informatización UHO API',
     'DESCRIPTION': 'Documentación del Sistema de Desarrollo para el Proceso de Informatización de la Universidad de Holguín (UHO)',
-    'VERSION': '1.0.0',
+    'VERSION': '1.1.0',
     'SERVE_INCLUDE_SCHEMA': False,
 }
 

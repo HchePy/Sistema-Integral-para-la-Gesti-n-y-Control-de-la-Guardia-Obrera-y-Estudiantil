@@ -1449,7 +1449,7 @@ export default function Dashboard() {
             <h1 className="text-lg sm:text-xl font-bold tracking-tight text-white flex items-center gap-1.5 sm:gap-2">
               SIGCGOE
               <span className="text-[10px] px-2 py-0.5 rounded-full bg-uho-light/10 text-uho-light border border-uho-light/20 hidden sm:inline-flex">
-                UHO v1.0
+                UHO v1.1
               </span>
             </h1>
             <p className="text-[10px] text-slate-400 font-medium hidden sm:block">Universidad de Holguín "Oscar Lucero Moya"</p>
